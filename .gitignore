@@ -1,0 +1,6 @@
+venv
+Myblog/Myblog/__init__.py
+Myblog/Myblog/__pycache__/
+Myblog/core/__init__.py
+Myblog/core/__pycache__/
+Myblog/core/migrations/
