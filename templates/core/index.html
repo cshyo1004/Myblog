@@ -1,65 +1,55 @@
 {% extends 'core/base.html' %}
-
 {% block content %}
-<br><br><br><br>
-<div class="container px-4 px-lg-5">
-    <div class="row gx-4 gx-lg-5 justify-content-center">
-        <div class="col-md-10 col-lg-8 col-xl-7">
-            <!-- Post preview-->
-            <div class="post-preview">
-                <a href="post.html">
-                    <h2 class="post-title">Man must explore, and this is exploration at its greatest</h2>
-                    <h3 class="post-subtitle">Problems look mighty small from 150 miles up</h3>
-                </a>
-                <p class="post-meta">
-                    Posted by
-                    <a href="#!">Start Bootstrap</a>
-                    on September 24, 2022
-                </p>
+<!-- Page content-->
+<div class="container mt-5">
+    <div class="row">
+        <!-- Blog entries-->
+        <div class="col-lg-7">
+            <!-- Featured blog post-->
+            {% for post in posts %}
+            <div class="card mb-4">
+                <a href="/post_detail/{{post.id}}"><img class="card-img-top" src="{{post.image.url}}" alt="..." width="850" height="350"/></a>
+                <div class="card-body">
+                    <div class="small text-muted">{{post.created_at}}</div>
+                    <h2 class="card-title">{{post.title}}</h2>
+                    <p class="card-text overflow-hidden">{{post.content}}</p>
+                    <a class="btn btn-primary" href="/post_detail/{{post.id}}">Read more</a>
+                    <a class="btn btn-primary" href="/update_post/{{post.id}}">Update</a>
+                    <a class="btn btn-primary" href="/delete_post/{{post.id}}">Delete</a>
+                </div>
             </div>
-            <!-- Divider-->
-            <hr class="my-4" />
-            <!-- Post preview-->
-            <div class="post-preview">
-                <a href="post.html"><h2 class="post-title">I believe every human has a finite number of heartbeats. I don't intend to waste any of mine.</h2></a>
-                <p class="post-meta">
-                    Posted by
-                    <a href="#!">Start Bootstrap</a>
-                    on September 18, 2022
-                </p>
+            {% endfor %}
+            <!-- Pagination-->
+            <nav aria-label="Pagination">
+                <hr class="my-0" />
+                <ul class="pagination justify-content-center my-4">
+                    <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer</a></li>
+                    <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#!">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#!">3</a></li>
+                    <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
+                    <li class="page-item"><a class="page-link" href="#!">15</a></li>
+                    <li class="page-item"><a class="page-link" href="#!">Older</a></li>
+                </ul>
+            </nav>
+        </div>
+        <!-- Side widgets-->
+        <div class="col-lg-5">
+            <!-- Categories widget-->
+            <div class="card mb-4">
+                <div class="card-header">New Post</div>
+                <div class="card-body">
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{form.as_p}}
+                        <div class="form-group row">
+                            <div class="col-sm-9">
+                            <button type="submit" class="btn btn-primary">Write a post</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <!-- Divider-->
-            <hr class="my-4" />
-            <!-- Post preview-->
-            <div class="post-preview">
-                <a href="post.html">
-                    <h2 class="post-title">Science has not yet mastered prophecy</h2>
-                    <h3 class="post-subtitle">We predict too much for the next year and yet far too little for the next ten.</h3>
-                </a>
-                <p class="post-meta">
-                    Posted by
-                    <a href="#!">Start Bootstrap</a>
-                    on August 24, 2022
-                </p>
-            </div>
-            <!-- Divider-->
-            <hr class="my-4" />
-            <!-- Post preview-->
-            <div class="post-preview">
-                <a href="post.html">
-                    <h2 class="post-title">Failure is not an option</h2>
-                    <h3 class="post-subtitle">Many say exploration is part of our destiny, but it’s actually our duty to future generations.</h3>
-                </a>
-                <p class="post-meta">
-                    Posted by
-                    <a href="#!">Start Bootstrap</a>
-                    on July 8, 2022
-                </p>
-            </div>
-            <!-- Divider-->
-            <hr class="my-4" />
-            <!-- Pager-->
-            <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div>
         </div>
     </div>
 </div>

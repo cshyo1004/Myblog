@@ -4,3 +4,4 @@ Myblog/__pycache__/
 core/__init__.py
 core/__pycache__/
 core/migrations/
+media/post_image

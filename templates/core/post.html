@@ -1,0 +1,31 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<!-- Page content-->
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-10">
+            <!-- Post content-->
+            <article>
+                <!-- Post header-->
+                <header class="mb-4">
+                    <!-- Post title-->
+                    <h1 class="fw-bolder mb-1">{{post.title}}</h1>
+                    <!-- Post meta content-->
+                    <div class="row">
+                        <div class="col-sm text-muted fst-italic mb-2">Posted on {{post.created_at}}</div>
+                        <div class="col-2"><a class="btn btn-primary" href="/update_post/{{post.id}}">update</a></div>
+                        <div class="col-2"><a class="btn btn-primary" href="/delete_post/{{post.id}}">delete</a> </div>
+                    </div>
+                </header>
+                <!-- Preview image figure-->
+                <figure class="mb-4"><img class="img-fluid rounded" src="{{post.image.url}}" alt="..." width="900" height="400"/></figure>
+                <!-- Post content-->
+                <section class="mb-5">
+                    <p class="fs-5 mb-4">{{post.content}}</p>
+                </section>
+            </article>
+        </div>
+    </div>
+</div>
+{% endblock %}
